@@ -20,7 +20,7 @@ def randSp(Msp,random_seed=0):
 	Mrand =  Msp[d, :]
 	return Mrand
 
-# todo: return dataframe of stats, and best params
+# todo: return dataframe of stats, and best params, runtime
 # todo: save params with hyper params in filename
 def main():
 

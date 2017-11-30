@@ -17,6 +17,7 @@ The data in `data/data.pkl.zip' are tweets with labelled sentiment (unigrams, di
 `python src/saveParams.py`
 
 The testing accuracy peaks at about 75.9% with 18 neurons
+
 |number of neurons|train acc|test acc|
 |-|-|-|
 |3 |0.758406666667 |0.74648|

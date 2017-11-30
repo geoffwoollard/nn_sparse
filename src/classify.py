@@ -7,7 +7,8 @@ import numpy as np
 from math import log
 import pickle
 
-class MyClassifier(object):
+# todo: remove imports in class
+class nn_sparse_classifier(object):
 	import numpy as np
 	from math import log
 	def __init__(self):

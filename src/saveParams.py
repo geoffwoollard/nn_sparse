@@ -6,49 +6,61 @@ import scipy.io
 import numpy as np
 from math import log
 import pickle
+from classify import nn_sparse_classifier
 
-if(1):
-	pkl_file = open('nn_sparse/data/data.pkl','rb')
+def load_data_from_pkl(file_name='data/data.pkl'):
+	pkl_file = open(file_name,'rb')
 	data = pickle.load(pkl_file)
+	return(data)
 
-def randSp(Msp):
+def randSp(Msp,random_seed=0):
 	d = np.arange(np.shape(Msp)[0])
+	np.random.seed(random_seed)
 	np.random.shuffle(d)
 	Mrand =  Msp[d, :]
 	return Mrand
-dataR = randSp(data)
 
-if(1):
+# todo: return dataframe of stats, and best params
+# todo: save params with hyper params in filename
+def main():
+
+	data = load_data_from_pkl(file_name='data/data.pkl')
+	dataR = randSp(data)
+	
 	X = dataR[:,1:]					# (1000000, 10063)
 	y = dataR[:,0]	
 	y = np.array(y.todense()).flatten()
 
-# offset 
-	#x1 = csr_matrix(np.ones(X.shape[0]).reshape(-1,1))
-	#X = csr_matrix(hstack( [epsilon*x1,X] ))
+	# offset 
+		#x1 = csr_matrix(np.ones(X.shape[0]).reshape(-1,1))
+		#X = csr_matrix(hstack( [epsilon*x1,X] ))
 	
 	trN=900000
 	Xtrain=X[:trN,:]
 	ytrain=y[:trN]
 	Xtest = X[trN:,:]
 	ytest = y[trN:]
+	
+	
+	classifier = nn_sparse_classifier()
+	for k in range(20,40,5):
+		print k,
+		if(1):
+			classifier.fit(Xtrain,ytrain,k)
+			classifier.save_params('data/paramsNew.npz')
+		if(1):
+			classifier.load_params('data/paramsNew.npz')
+			yhat = classifier.predict(Xtrain)
+			print sum(yhat == ytrain)/yhat.size,
+			yhat = classifier.predict(Xtest)
+			print sum(yhat == ytest)/yhat.size
+			
+			
+if __name__ == "__main__":
+	main()
+	
 
-
-from classify import MyClassifier
-classifier = MyClassifier()
-for k in range(20,40,5):
-	print k,
-	if(1):
-		classifier.fit(Xtrain,ytrain,k)
-		classifier.save_params('paramsNew.npz')
-	if(1):
-		classifier.load_params('paramsNew.npz')
-		yhat = classifier.predict(Xtrain)
-		print sum(yhat == ytrain)/yhat.size,
-		yhat = classifier.predict(Xtest)
-		print sum(yhat == ytest)/yhat.size
-
-# cross validation, found 20 neurons best (max number tried)
+# cross validation
 #3 0.758406666667 0.74648
 #4 0.762307777778 0.74781
 #5 0.761155555556 0.74491

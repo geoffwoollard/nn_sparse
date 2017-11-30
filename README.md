@@ -1,10 +1,16 @@
 # Introduction
 Sparse fully connected neural network. Written in Python using numpy and scipy. See online lectures by [Nando De Freitas](http://www.cs.ubc.ca/~nando/340-2012/index.php) for theoretical background.
 
+# Requirements
+`conda`
+`python 2.7`
+See other requirments in `requirements.txt`
+
 # Set up
 ```bash
 git clone https://github.com/geoffwoollard/nn_sparse.git
 cd nn_sparse
+conda create --name nn_sparse python=2.7
 pip install -r requirements.txt
 unzip data/data.pkl.zip
 ```

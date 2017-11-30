@@ -2,18 +2,21 @@
 Sparse fully connected neural network. Written in Python using numpy and scipy. See online lectures by [Nando De Freitas](http://www.cs.ubc.ca/~nando/340-2012/index.php) for theoretical background.
 
 # Set up
+```bash
 git clone https://github.com/geoffwoollard/nn_sparse.git
 cd nn_sparse
 pip install -r requirements.txt
 unzip data/data.pkl.zip
+```
 
 # Data
-The data in `data/data.pkl.zip' are tweets with labelled sentiment (1-grams, dictionary of ~10 000 words). The labelling is not perfect, so complete accuracy is not expected.
+The data in `data/data.pkl.zip' are tweets with labelled sentiment (unigrams, dictionary of ~10 000 words). The labelling is not perfect, so complete accuracy is not expected.
 
 # Benchmarking
-## the number of neurons
-python src/saveParams.py
+## Number of neurons
+`python src/saveParams.py`
 
+The testing accuracy peaks at about 75.9% with 18 neurons
 |number of neurons|train acc|test acc|
 |-|-|-|
 |3 |0.758406666667 |0.74648|
@@ -33,3 +36,7 @@ python src/saveParams.py
 |17| 0.770744444444 |0.75783|
 |18| 0.771171111111 |0.75914|
 |19| 0.770772222222 |0.75831|
+|20| 0.771523333333 |0.7572|
+|25| 0.770294444444 |0.75702|
+|30| 0.762074444444 |0.75009|
+|35| 0.760991111111 |0.74977|

@@ -2,9 +2,9 @@
 Sparse fully connected neural network. Written in Python using numpy and scipy. See online lectures by [Nando De Freitas](http://www.cs.ubc.ca/~nando/340-2012/index.php) for theoretical background.
 
 # Requirements
-`conda`
-`python 2.7`
-See other requirments in `requirements.txt`
+* `conda`
+* `python 2.7`
+* See other requirments in `requirements.txt`
 
 # Set up
 ```bash
